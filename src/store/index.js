@@ -1,9 +1,14 @@
-//importe o método applyMiddleware 
-import { createStore } from 'redux';
+//importe o método applyMiddleware
+import { createStore, applyMiddleware, compose } from 'redux';
 //importe o redux-thunk
-import reducer from '../reducers';
+import thunk from 'redux-thunk';
+
+import rootReducer from '../reducers';
+
+// Redux Devtools
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 //aplique o middleware
-const store = createStore(reducer);
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 export default store;
